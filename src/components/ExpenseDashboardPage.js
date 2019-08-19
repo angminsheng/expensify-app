@@ -1,11 +1,11 @@
 import React from "react";
 
 // import { AdminInfo, AuthInfo } from "../playground/hoc";
-import ConnectedExpenseList from "./ExpenseList";
+import ExpenseList from "./ExpenseList";
 
-const ExpenseDashboardPage = () => (
+export const ExpenseDashboardPage = () => (
   <div>
-    <ConnectedExpenseList />
+    <ExpenseList />
   </div>
 );
 

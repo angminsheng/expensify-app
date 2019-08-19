@@ -29,7 +29,6 @@ export default class ExpenseForm extends Component {
   onAmountChange = e => {
     let amount = e.target.value;
     if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
-      console.log("true");
       this.setState(() => ({ amount }));
     }
   };

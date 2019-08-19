@@ -1,22 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import ExpenseListItem from "./ExpenseListItem";
 import selectExpenses from "../selectors/expenses";
 import ExpenseListFilters from "./ExpenseListFilters";
+import { startSetExpenses } from "../actions/expenses";
 
-function ExpenseList(props) {
+export const ExpenseList = props => {
+  // placing the call here will make the data only called here.
+  // useEffect(() => {
+  //   props.startSetExpense();
+  // }, [props]);
   let element = props.expenses.map(expense => (
     <ExpenseListItem {...expense} key={expense.id} />
   ));
 
   return (
     <div>
-      <h1>Expense List</h1>
       <ExpenseListFilters />
-      {element}
+      {props.expenses.length === 0 ? <p>Loading</p> : element}
     </div>
   );
-}
+};
 
 //callback function here tells connect what information the component wants to access.
 
@@ -33,4 +37,11 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ExpenseList);
+const mapDispatchToProps = dispatch => ({
+  startSetExpense: () => dispatch(startSetExpenses())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExpenseList);
